@@ -1,0 +1,65 @@
+.Recruiment-job{
+    width: 90vw;
+    height: 90vh;
+}
+.Employer{
+    background-color: #e9eff4   ;
+    color: #808080;
+    display: inline-block;
+    border-radius: 30px;
+    width: 30vw;
+    height: 50vh;
+    margin-top: 10vh;
+    margin-left: 5vw;
+    border: solid 1px grey;
+}
+.employer-title{
+    margin: 2% 2%;
+    font-weight: 700;
+    padding-bottom: 2%;
+    width: 90%;
+    color: #07b2ed;
+    border-bottom: solid 1px gray;
+}
+.Employer p{
+    margin-left: 2%;
+    margin-top: 4%;
+    font: 0.8em;
+
+}
+#employ-name-id{
+    color: #cc3e2f;
+    font-weight: 700;
+}
+
+.recruitmennt-job-now{
+    float: right;
+    margin-top: 15vh;
+    width: 40vw;
+    height: auto;
+}
+.recruitmennt-job-now:hover{
+    box-shadow: 4px 4px 4px 4px grey;
+}
+
+.recruitmennt-job-now p{
+    font-weight: 700;
+    width: 100%;
+    margin-left: 10%;
+    padding: 1% 2%;
+}
+.recruitmennt-job-now span{
+    font-weight: 300;
+    font-style: oblique;
+}
+
+.apply-now{
+    border-style: none;
+    font-size: 1em;
+    background-color: #808080;
+    padding: 2% 2%;
+    border-radius: 10px;
+    color: white;
+    border: solid 2px #07b2ed;
+    cursor: pointer;
+}

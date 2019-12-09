@@ -1,0 +1,173 @@
+.employer-jobs-profile{
+    background-color: #e9eff4;
+    display: inline-block;
+    width: 35vw;
+    min-height: 20vh;
+    max-height: 60vh;
+    height: auto;
+    margin-top: 2vh;
+    margin-left: 2vw;
+    border-radius: 10px;
+    border: solid 1px #3071a9;
+}
+
+.employer-title{
+    margin: 1% 1%;
+    padding: 1% 1%;
+    color: #3071a9;
+    font-weight: 700;
+    font-style: oblique;
+}
+.create-new-recruitment-btn{
+    float: right;
+    margin: 1% 1%;
+    color: green;
+    cursor: pointer;
+    font-size:1.2em ;
+}
+.create-new-recruitment-btn :hover{
+    color: orange   ;
+}
+
+.ejprofile-title{
+    border-bottom: solid 3px grey;
+    padding: 1% 1%;
+    margin: 1% 10%;
+}
+.ejprofile-title p{
+    display: inline-block;
+    width: 100%;
+}
+.ejprofile-title p span{
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    margin-left: 7%;
+    font-weight: 700;
+}
+
+.list-ejprofile{
+    padding: 1% 1%;
+    margin: 1% 10%;
+}
+.list-ejprofile p{
+    display: block;
+    width: 100%;
+    padding: 1% 1%;
+    border-bottom: solid 1px gray;
+    cursor: pointer;
+}
+.list-ejprofile p span{
+    overflow: auto;
+    font-size: 0.8em;
+    width: 40%;
+    max-width: 40%;
+    max-height: 2.5vh;
+    display: inline-block;
+    text-align: center;
+    margin-left: 7%;
+} 
+.list-ejprofile p:hover{
+    color: #ecede6;
+    background-color: gray;
+    border-left: solid 10px #0795df;
+}
+
+.create-new-recruitment{
+    float: right;
+    margin-top: 5vh;
+    margin-right: 10vw;
+    background-color: white;
+    width: 35vw;
+    height: 70vh;
+    padding: 1% 1%;
+    border: solid 1px black;
+    border-radius: 10px;
+    display: none;
+}
+.create-new-recruitment:hover{
+    box-shadow: 4px 4px 4px 4px grey;
+}
+.create-title{
+    font-style: oblique;
+    font-weight: 700;
+    padding: 2% 2%;
+    border-bottom: solid 2px black;
+    margin-bottom: 2%;
+}
+.confirm-create{
+    float: right;
+    font-size: 1.5em;
+    color: green;
+    cursor: pointer;
+}
+.confirm-create:hover{
+    color: orange;
+}
+
+.create-new-recruitment div{
+    margin: 2% 2%;
+}
+
+.create-new-recruitment div span{
+    display: inline-block;
+    width: 30%;
+}
+.create-new-recruitment div input{
+    display: inline-block;
+    width: 40%;
+    border: solid 1px gray;
+    padding: 2% 2%;
+    font-size: 0.8em;
+    border-radius: 10px;
+}
+
+
+.create-new-recruitment-views{
+    float: right;
+    margin-top: 5vh;
+    margin-right: 10vw;
+    background-color: white;
+    width: 35vw;
+    height: 70vh;
+    padding: 1% 1%;
+    border: solid 1px black;
+    border-radius: 10px;
+    display: none;
+}
+.create-new-recruitment-views:hover{
+    box-shadow: 4px 4px 4px 4px grey;
+}
+.create-title-views{
+    font-style: oblique;
+    font-weight: 700;
+    padding: 2% 2%;
+    border-bottom: solid 2px black;
+    margin-bottom: 2%;
+}
+
+.create-new-recruitment-views div{
+    margin: 2% 2%;
+}
+
+.create-new-recruitment-views div span{
+    display: inline-block;
+    width: 30%;
+}
+.create-new-recruitment-views div p{
+    display: inline-block;
+    font-style: oblique;
+    width: 40%;
+    padding: 2% 2%;
+    font-size: 0.8em;
+    border-radius: 10px;
+}
+.confirm-delete{
+    float: right;
+    font-size: 1.5em;
+    color: red;
+    cursor: pointer;
+}
+.confirm-delete:hover{
+    color: black;
+}

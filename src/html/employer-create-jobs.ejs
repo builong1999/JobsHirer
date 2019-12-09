@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Share to be better</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/edb0ed1b03.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/public-page.css">
+    <link rel="stylesheet" href="../css/employer-create-jobs.css">
+</head>
+
+<body>
+    <header>
+        <img src="../img/LOGO.png" alt="LOGO" class="LOGO" id="LOGO">
+        <p class="web-slogan-title">Share <span>to be better</span> </p>
+        <div class="clearfix"></div>
+        <ul class="toolbelt-option-class" id="toolbelt-option-id">
+            <li id="ses-user-name" style="display: none;">My name</li>
+            <li id="recruit-all-jobs-id"><i class="fas fa-map-marked-alt"></i> All Jobs</li>
+            <li id="blog-all-id"><i class="fas fa-blog"></i> Blog</li>
+            <li id="sign-id"><i class="fas fa-sign-in-alt"></i> Sign in</li>
+            <li id="out-id" style="display: none;"><i class="fas fa-sign-in-alt"></i> Sign out</li>
+        </ul>
+    </header>
+    <div class="watermark-fullscreen"></div>
+    <div class="Sign-tabs">
+        <p class="cls-sign-tabs-btn" id="cls-sign-tabs-id"><i class="fas fa-times"></i></p>
+        <div class="control-sign-type">
+            <p class="Sign-up" id="su-id-click">Sign up</p>
+            <p class="Sign-in" id="si-id-click">Sign in</p>
+        </div>
+        <div class="sign-up-body" id="su-body-id">
+            <div class="clearfix"></div>
+            <div class="google-sign-up">
+                <p class="google-sign-up-btn"> <span><i class="fab fa-google-plus-g"></i></span> Sign up with google</p>
+            </div>
+            <p class="Separate-options"></p>
+            <div class="sign-up-n-option">
+                <ul class="sign-up-alert">
+                    <li id="mail-su-alert">Your mail does not invalid</li>
+                    <li id="name-su-alert">Your name does not invalid</li>
+                    <li id="pw-su-alert">Your password is not invalid</li>
+                </ul>
+                <p class="email-su-option-p">
+                    <p class="uname-su-p">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="uname-su-option-ip" id="uname-su-opion-id" placeholder="Your name">
+                    </p>
+                    <p class="email-su-p">
+                        <i class="fas fa-at"></i>
+                        <input type="text" maxlength="25" class="email-su-option-ip" id="email-su-opion-id"
+                            placeholder="Email">
+                    </p>
+                    <p class="pw-su-p">
+                        <i class="fas fa-key"></i>
+                        <input type="password" maxlength="25" class="pw-su-option-ip" id="pw-su-opion-id"
+                            placeholder="Password">
+                    </p>
+                    <p class="acc-type-p">
+                        <span>I am: </span>
+                        <select name="SelectedBox" id="acc-type-selec-box-id">
+                            <option value="1">Employer</option>
+                            <option value="0" selected>Candidate</option>
+                        </select>
+                    </p>
+                </p>
+                <p class="btn-submit-sign-up" id="btn-submit-su-id">Create my Account</p>
+            </div>
+        </div>
+        <div class="sign-in-body" id="si-body-id">
+            <div class="clearfix"></div>
+            <div class="google-sign-in">
+                <p class="google-sign-in-btn">
+                    <span><i class="fab fa-google-plus-g"></i></span>
+                    Continue with Google</p>
+            </div>
+            <p class="Separate-options"></p>
+            <div class="sign-in-n-options">
+                <ul class="sign-in-alert">
+                    <li id="mail-si-alert">Your mail does not match</li>
+                    <li id="pw-si-alert">Your password does not match</li>
+                </ul>
+                <p class="email-si-p">
+                    <i class="fas fa-at"></i>
+                    <input type="text" class="email-sign-in-option-ip" id="email-si-option-id" name="username"
+                        placeholder="Email">
+                </p>
+                <p class="pw-si-p">
+                    <i class="fas fa-key"></i>
+                    <input type="password" class="pw-sign-in-option-ip" id="pw-si-option-id" name="password"
+                        placeholder="Password">
+                </p>
+                <p class="sign-in-btn-access" id="btn-sign-in-access">Sign in</p>
+            </div>
+        </div>
+    </div>
+    <div class="control-tool-option">
+        <p class="my-profile" id="my-prof-id"><i class="fas fa-id-card"></i> My profile</p>
+        <div class="admin-function">
+            <p class="bsn-type-p"> <i class="fas fa-building"></i> Business type</p>
+        </div>
+        <div class="employer-function">
+            <p class="employ-f-p"><i class="fab fa-wordpress"></i> My request</p>
+        </div>
+        <div class="candidate-function">
+            <p class="can-f-blg"><i class="fas fa-blog"></i> My Blog</p>
+            <p class="can-f-cv"> <i class="fas fa-file-word"></i> My CV</p>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <nav>
+        <div class="clearfix"></div>
+        <div class="employer-jobs-profile">
+            <p class="create-new-recruitment-btn" check = '0' title="Create new" id="create-new-re-btn-id"><i class="fas fa-plus"></i></p>
+            <p class="employer-title">My Recruitment</p>
+            <div class="ejprofile-title">
+                <p>
+                    <span>Name</span>
+                    <span>Description</span>
+                </p>
+            </div>
+            <div class="list-ejprofile" id="list-ejprofile-id">
+            </div>
+        </div>
+        <div class="create-new-recruitment" id="cre-new-recruit-id">
+            <div class="confirm-create" id="confirmCreate"><i class="fas fa-check-double"></i></div>
+            <div class="create-title">Your new recruitment</div>
+            <div class="jobs-name:">
+                <span>Jobs name</span> <input id="job-name-id-ip"  type="text">
+            </div>
+            <div class="job-address">
+                <span>Work address</span> <input id="job-address-id-ip"  type="text">
+            </div >
+            <div class="job-insurance">
+                <span>About Insurance</span> <input id="job-insurance-id-ip"  type="text">
+            </div>
+            <div class="job-s-time">
+                <span>Start Time</span> <input id="job-start-id-ip"  type="date" value="2019-01-01" min="2019-01-01" max="2099-01-01">
+            </div>
+            <div class="job-e-time">
+                <span>End Time</span> <input id="job-end-id-ip"  type="date" value="2019-01-01" min="2019-01-01" max="2099-01-01">
+            </div>
+            <div class="job-sal-min">
+                <span>About Min Salary</span> <input id="job-sal-id-ip"  type="text">
+            </div>
+            <div class="job-day-off">
+                <span>About Day off</span> <input id="job-day-id-ip"  type="text">
+            </div>
+            <div class="job-description">
+                <span>More description</span> <input id="job-description-id-ip"  type="text">
+            </div>
+        </div>
+        <div class="create-new-recruitment-views" id="cre-new-recruit-id-views">
+                <div class="confirm-delete" id="confirmDelete"><i class="fas fa-eraser"></i></div>
+                <div class="create-title-views">About</div>
+                <div class="jobs-name-views">
+                    <span>Jobs name</span> <p id="job-name-id-ip-views">123</p>
+                </div>
+                <div class="job-address-views">
+                    <span>Work address</span> <p id="job-address-id-ip-views">321</p>
+                </div >
+                <div class="job-insurance-views">
+                    <span>About Insurance</span> <p id="job-insurance-id-ip-views">456</p>
+                </div>
+                <div class="job-s-time-views">
+                    <span>Start Time</span> <p id="job-start-id-ip-views">654</p>
+                </div>
+                <div class="job-e-time-views">
+                    <span>End Time</span> <p id="job-end-id-ip-views">789</p>
+                </div>
+                <div class="job-sal-min-views">
+                    <span>About Min Salary</span> <p id="job-sal-id-ip-views">987</p>
+                </div>
+                <div class="job-day-off-views">
+                    <span>About Day off</span> <p id="job-day-id-ip-views">aaa</p>
+                </div>
+                <div class="job-description-views">
+                    <span>More description</span> <p id="job-description-id-ip-views">bbb</p>
+                </div>
+            </div>
+    </nav>
+    <script src="../js/public-page.js"></script>
+    <script src="../js/employer-create-jobs.js"></script>
+    <!-- SCRIPT HERE -->
+</body>
