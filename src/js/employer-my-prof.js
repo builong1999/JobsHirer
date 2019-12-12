@@ -27,7 +27,7 @@ $('#updateInformation').click(e=>{
         }
     }).done(result=>{
         if(result){
-
+            window.location.reload();
         }
     })
 })
