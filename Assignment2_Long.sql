@@ -77,11 +77,35 @@ END;
 -- Viết 2 thủ tục chỉ chứa câu truy vấn để hiển thị dữ liệu và tham số đầu vào
 
 -- a
-SELECT EName,JDescription,JTimeStart,JTimeEnd_Expected,JSalary  FROM Recruitment_Job, Employer WHERE EID = J_EID
+
+DROP PROCEDURE SELECT_JOIN_EM_RJ
+
+CREATE PROCEDURE SELECT_JOIN_EM_RJ
+@Data INT
+AS 
+BEGIN
+( 
+SELECT EName,JDescription,JTimeStart,JTimeEnd_Expected,JSalary  FROM Recruitment_Job, Employer WHERE EID = @Data and J_EID = @Data
+)
+END
+
+EXEC SELECT_JOIN_EM_RJ 19
+
 
 -- b
-SELECT J_EID as 'Root Jobs', MAX(RJ.JSalary) as 'Max Salary'  FROM Recruitment_Job as RJ Group By J_EID 
 
+DROP PROCEDURE SELECT_JOIN_MAX_SAL
+
+
+CREATE PROCEDURE SELECT_JOIN_MAX_SAL
+@Data INT
+AS
+BEGIN
+	SELECT J_EID as 'Root Jobs', MAX(RJ.JSalary) as 'Max Salary'  FROM Recruitment_Job as RJ Group By J_EID HAVING MAX(RJ.JSalary)> @Data
+END
+
+
+EXECUTE SELECT_JOIN_MAX_SAL 1005
 ------------------------------------------------------------------------------------------------------------------------------------
 -- Câu 4
 -- Viết 2 hàm thỏa yêu cầu.

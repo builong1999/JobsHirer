@@ -100,9 +100,6 @@ $('#confirmCreate').click(e => {
             $('#job-description-id-ip').val('');
             $('#create-new-recruitment').show();
         }
-        else {
-
-        }
     })
     LOAD();
 })

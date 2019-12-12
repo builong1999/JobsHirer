@@ -1,0 +1,59 @@
+.frameProfile{
+    background-color: #e9eff4;
+    border: solid 1px grey;
+    border-radius: 5%;
+    width: 40vw;
+    min-height: 40vh;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: #858c9d;
+}
+
+.tittle{
+    font-weight: 700;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    text-align: center;
+}
+
+.listProfile{
+    background-color: #e9eff4;
+    border: solid 2px #f5f5f5;
+    width: 90%;
+    font-size: em;
+    margin-left: 5%;
+    margin-top: 1mm;
+    margin-bottom: 1mm;
+}
+.button{
+    background-color: #858c9d;
+    text-align: center;
+    padding: 1.5%8.5%;
+    margin-top: 1.5cm;
+    margin-left: 5.5cm;
+    color: black;
+    font-weight: 700;
+}
+.buttonDelete{
+    background-color: #858c9d;
+    text-align: center;
+    padding: 1.5%6%;
+    margin-top: 1.5cm;
+    margin-left: 1cm;
+    color: black;
+    font-weight: 700;
+}
+.buttonSalary{
+    background-color: #858c9d;
+    text-align: center;
+    padding: 1.5%3.5%;
+    margin-top: 1.5cm;
+    margin-left: 1cm;
+    color: black;
+    font-weight: 700;
+}
+.list-CV{
+    margin-top: 1cm;
+    margin-left: 2cm;
+}

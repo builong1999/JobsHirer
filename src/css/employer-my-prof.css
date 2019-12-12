@@ -1,0 +1,94 @@
+.delete-my-account{
+    float: right;
+    padding: 1% 1%;
+    margin: 1% 1%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.base-my-prof-id{
+    margin-left: 10%;
+    margin-top: 5%;
+    background-color: white;
+    display: inline-block;
+    border-radius: 15px;
+    width: 35vw;
+    height: 40vh;
+    box-shadow: 4px 4px 4px 4px black;
+}
+.my-prof-title{
+    font-style: oblique;
+    padding: 1% 1%;
+    font-size: 1em;
+    width: 90%;
+    margin-left: 5%;
+    border-bottom: solid 1px black;
+}
+.base-my-prof-id p{
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+.base-my-prof-id p span{
+    width: 30%;
+    font-size: 0.8em;
+}
+.base-my-prof-id p input{
+    padding: 1% 1%;
+    margin-left: 2%;
+    width: 40%;
+}
+.base-my-prof-id p select{
+    padding: 1% 1%;
+    margin-left: 2%;
+    width: 40%;
+}
+
+#updateInformation{
+    margin-top: 5%;
+    margin-left: 40%;
+    width: 20%;
+    padding: 2% 2%;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.search-employer{
+    background-color: white;
+    float: right;
+    margin-top: 5%;
+    margin-right: 5%;
+    width: 20vw;
+    height: 60vh;
+    overflow: auto;
+}
+.input-select-search{
+    display: flex;
+    align-items: center;
+    padding: 2% 1%;
+    margin: 5% 5%;
+    border-bottom: solid 1px black;
+}
+.input-select-search span{
+    width: 40%;
+    font-style: oblique;
+}
+.input-select-search select{
+    width: 50%;
+    overflow: hidden;
+    padding: 2% 2%;
+}
+.list-employer-show{
+    margin: 1% 5%;
+}
+.list-employer-show p{
+    margin: 2% 0%;
+}
+.list-employer-show p span{
+    display: inline-block;
+    width: 40%;
+    max-height: 3vh;
+    max-width: 40%;
+    text-align: center;
+    overflow: hidden;
+}

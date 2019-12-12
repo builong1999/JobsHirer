@@ -70,26 +70,25 @@ WHILE @cnt <= @cnt_total
 END;
 
 SET @cnt_total = 15;
---SET @cnt = 1;
---WHILE @cnt <= @cnt_total
---	BEGIN
---	INSERT INTO Curriculum_Vitae VALUES(
---	CONCAT('RJ_ID',@cnt),	-- CV Root Job ID
---	CONCAT('CND',@cnt),		-- CV Candidate ID
---	CONCAT('CVC_ID',@cnt),	-- This CV ID
---	CONCAT('Edu ',@cnt),	-- CV Education
---	CONCAT('A Level ',@cnt),	-- CV Academic
---	CONCAT('Foreign ',@cnt),	-- CV Foreign Languages
---	CONCAT('Exp= ',@cnt),	-- CV Expreience
---	CONCAT('Health ',@cnt),	-- CV Health
---	@cnt,	-- CV Candidate
---	@cnt,	-- CV Candidate
---	@cnt,	-- CV Candidate
---	10.05+@cnt	-- CV Candidate
---	);
---	SET @cnt = @cnt + 1;
---END;
---SET @cnt = 1;
+SET @cnt = 1;
+WHILE @cnt <= @cnt_total
+	BEGIN
+	INSERT INTO Curriculum_Vitae VALUES(
+	@cnt%3 + 2,	-- CV Root Job ID
+	@cnt%3 +  2,		-- CV Candidate ID
+	CONCAT('Edu ',@cnt),	-- CV Education
+	CONCAT('A Level ',@cnt),	-- CV Academic
+	CONCAT('Foreign ',@cnt),	-- CV Foreign Languages
+	CONCAT('Exp= ',@cnt),	-- CV Expreience
+	CONCAT('Health ',@cnt),	-- CV Health
+	@cnt,	-- CV Candidate
+	@cnt,	-- CV Candidate
+	@cnt,	-- CV Candidate
+	10.05+@cnt	-- CV Candidate
+	);
+	SET @cnt = @cnt + 1;
+END;
+SET @cnt = 1;
 
 --WHILE @cnt <= @cnt_total
 --	BEGIN

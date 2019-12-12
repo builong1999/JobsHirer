@@ -6,7 +6,7 @@ const expressSession = require('express-session');
 const LocalStrategy = require('passport-local').Strategy;
 var sql = require('mssql');
 // install library ejs << npm install ejs >>>
-const keys = require('./mod/key')
+// const keys = require('./mod/key')
 
 // ----------------------------------------------CONFIGURATION------------------------------------
 const PORT = 5000 || process.env.PORT;
@@ -151,13 +151,13 @@ app.post('/create-new-account/confirm', (req, res, next) => {
     else{
       if (req.body.AType == 1){
         request.query(`
-        INSERT INTO dbo.Employer VALUES( (SELECT IDENT_CURRENT('Account')),'${req.body.username}','NULL','NULL',1)
+        INSERT INTO dbo.Employer VALUES( (SELECT IDENT_CURRENT('Account')),N'${req.body.yourname}','${req.body.username}','NULL',1)
         `)
       }
       else{
         request.query(`
         INSERT INTO dbo.Candidate
-        VALUES ((SELECT IDENT_CURRENT('Account')), '${req.body.username}', 'default', '00000000000', '@', '1-1-2000', '000000000' , 0, '');
+        VALUES ((SELECT IDENT_CURRENT('Account')), N'${req.body.yourname}', 'default', '00000000000', '${req.body.username}', '1-1-2000', '000000000' , 0, '');
         `)
       }
       res.send(true)
@@ -318,4 +318,254 @@ app.post('/get-sch-account/post-confirm', (req,res,next)=>{
     res.send(false)
   }
 })
+
+app.get('/my-profile-ser',(req,res,next)=>{
+  if(req.isAuthenticated()){
+    if(req.user.AType == 1){
+      res.render('employer-my-prof')
+    }
+    else{
+      res.render('candidate-profile')
+    }
+  }
+  else{
+    res.redirect('/')
+  }
+})
 // -------------------------------------------------HẾT CỦA LONG---------------------------------------------------------------
+
+app.post('/get-employer-prof/confirm',(req,res,next)=>{
+  if(req.isAuthenticated()){
+    request.resume();
+    request.query(`
+    SELECT EName, EEmail, EAddress, EType FROM dbo.Employer
+    WHERE EID = ${req.user.AID}
+    `, (err,result)=>{
+      if(err) console.log(err)
+      else{
+        request.query('SELECT EC_ID as id ,EC_Name as name FROM dbo.Business_Type',(err2,result2)=>{
+          if(err2) console.log(err2)
+          else{
+            res.send({
+              a: result.recordset[0].EName,
+              b: result.recordset[0].EEmail,
+              c: result.recordset[0].EAddress,
+              d: result2.recordset,
+            })
+          }
+        })
+      }
+    })
+    request.pause();
+  }
+} )
+
+app.post('/update-employer-prof/confirm',(req,res)=>{
+  request.resume();
+  request.query(`UPDATE dbo.Employer 
+  SET EName = N'${req.body.a}', EEmail = '${req.body.b}', EAddress = N'${req.body.c}',
+  EType = ${req.body.d} WHERE EID = ${req.user.AID}`, (req,res)=>{
+    if(req) console.log(req)
+    else{
+      
+    }
+  })
+  request.pause();
+})
+
+app.get('/remove/employer/account',(req,res)=>{
+  request.resume();
+  request.query(`DELETE dbo.Employer WHERE EID = ${req.user.AID}`)
+  request.pause();
+  req.logout();
+  res.redirect('/')
+})
+
+
+app.post('/search-recruit-by-id/confirm',(req,res)=>{
+  request.resume();
+  request.query(`SELECT EName as b from dbo.Employer WHERE EType = ${req.body.data}`,(err,result)=>{
+    if(err)console.log(err)
+    else{
+      res.send(result.recordset)
+    }
+  })
+  request.pause();
+})
+// -------------------------------------------------HẾT CỦA LINH---------------------------------------------------------------
+
+
+app.post('/update-profile/confirm', (req, res, next)=>{
+  if(req.isAuthenticated())
+  {
+    request.resume();
+    request.query(`select CFName,CAddress,CContact,CEmail,CDOB,CID_Secure,CSex,CSpecialize_Des from dbo.Candidate where CID = ${req.user.AID}`,(err,result)=>{
+      if(err) {console.log(err)}
+      else{
+        if (req.body.name.length == 0) req.body.name = result.recordset[0].CFName;
+        if (req.body.addr.length == 0) req.body.addr = result.recordset[0].CAddress;
+        if (req.body.contact.length == 0) req.body.contact = result.recordset[0].CContact;
+        if (req.body.email.length == 0) req.body.email = result.recordset[0].CEmail;
+        if (req.body.dob.length == 0) req.body.dob = result.recordset[0].CDOB;
+        if (req.body.cmnd.length == 0) req.body.cmnd = result.recordset[0].CID_Secure;
+        if (req.body.sex.length == 0) req.body.sex = result.recordset[0].CSex;
+        if (req.body.spec.length == 0) req.body.spec = result.recordset[0].CSpecialize_Des;
+          request.query(`UPDATE Candidate
+          SET CFName = N'${req.body.name}', CAddress = N'${req.body.addr}',
+          CContact = '${req.body.contact}', CEmail = '${req.body.email}',
+          CDOB = '${req.body.dob}', CID_Secure = ${req.body.cmnd},
+          CSex = ${req.body.sex}, CSpecialize_Des = N'${req.body.spec}'
+          WHERE Candidate.CID = ${req.user.AID}`,
+          (err,result)=>{
+          if(err) {console.log('loi update')}
+          else{
+            res.send(true);
+          }
+        })
+
+      }
+    })
+    request.pause();
+  }
+  else
+  {
+    res.redirect('/')
+  }
+})
+
+app.post('/update-profile/confirm', (req, res, next)=>{
+  if(req.isAuthenticated())
+  {
+    request.resume();
+    request.query(`select CFName,CAddress,CContact,CEmail,CDOB,CID_Secure,CSex,CSpecialize_Des from dbo.Candidate where CID = ${req.user.AID}`,(err,result)=>{
+      if(err) {console.log(err)}
+      else{
+        if (req.body.name.length == 0) req.body.name = result.recordset[0].CFName;
+        if (req.body.addr.length == 0) req.body.addr = result.recordset[0].CAddress;
+        if (req.body.contact.length == 0) req.body.contact = result.recordset[0].CContact;
+        if (req.body.email.length == 0) req.body.email = result.recordset[0].CEmail;
+        if (req.body.dob.length == 0) req.body.dob = result.recordset[0].CDOB;
+        if (req.body.cmnd.length == 0) req.body.cmnd = result.recordset[0].CID_Secure;
+        if (req.body.sex.length == 0) req.body.sex = result.recordset[0].CSex;
+        if (req.body.spec.length == 0) req.body.spec = result.recordset[0].CSpecialize_Des;
+          request.query(`UPDATE Candidate
+          SET CFName = N'${req.body.name}', CAddress = N'${req.body.addr}',
+          CContact = '${req.body.contact}', CEmail = '${req.body.email}',
+          CDOB = '${req.body.dob}', CID_Secure = ${req.body.cmnd},
+          CSex = ${req.body.sex}, CSpecialize_Des = N'${req.body.spec}'
+          WHERE Candidate.CID = ${req.user.AID}`,
+          (err,result)=>{
+          if(err) {console.log('loi update')}
+          else{
+            res.send(true);
+          }
+        })
+
+      }
+    })
+    request.pause();
+  }
+  else
+  {
+    res.redirect('/')
+  }
+})
+
+app.post('/delete-profile/confirm', (req, res, next)=>{
+  if(req.isAuthenticated())
+  {
+    request.resume();
+    request.query(`delete from Account where AID = '${req.user.AID}'`,(err, result)=>{
+      if(err) {console.log(err)}
+      else{
+        request.query(`delete from Candidate where CID = '${req.user.AID}'`,(err, result)=>{
+          if(err) {console.log(err)}
+          else{
+            res.render('public-page')
+          }
+        })
+      }
+    })
+    request.pause();
+  }
+  else
+  {
+    res.redirect('/')
+  }
+})
+// -------------------------------------------------HẾT CỦA HUY---------------------------------------------------------------
+ 
+
+app.get('/my-cv-raise', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render('mycv-page')
+  }
+  else {
+    res.redirect('/')
+  }
+})
+app.post('/create-cv-prof/confirm', (req, res) => {
+  // console.log(req.body)
+  if (req.isAuthenticated()) {
+    request.resume();
+    request.query(`INSERT INTO dbo.Curriculum_Vitae VALUES(
+    '${req.body.RID}',
+    '${req.user.AID}',
+    '${req.body.E}',
+    '${req.body.A}',
+    '${req.body.F}',
+    '${req.body.Ex}',
+    '${req.body.H}',
+    '${req.body.EC}',
+    '${req.body.Co}',
+    '${req.body.P}',
+    '${req.body.S}'
+  )`, (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send(false);
+      }
+      else {
+        res.send(true);
+      }
+    })
+    request.pause();
+  }
+})
+app.post('/delete-cv-prof/confirm', (req, res) => {
+  if (req.isAuthenticated()) {
+    request.resume();
+    request.query(`DELETE FROM dbo.Curriculum_Vitae
+    WHERE CVC_ThisID = '${req.body.CV_ID}'`, (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send(false);
+      }
+      else {
+        res.send(true);
+      }
+    })
+    request.pause();
+  }
+})
+app.post('/search-cv-prof/confirm', (req, res)=> {
+  if(req.isAuthenticated()){
+    request.resume();
+    console.log(req.body)
+    request.query(`Select * FROM dbo.Curriculum_Vitae WHERE CVC_Salary < ${req.body.salary}`, (err,result) => {
+      if(err)
+      {
+        console.log(err);
+        res.send(false);
+      }
+      else
+      {
+        res.send(result.recordset);
+      }
+    })
+    request.pause();
+  }
+})
+
+// -------------------------------------------------HẾT CỦA ĐỆ---------------------------------------------------------------
+ 
