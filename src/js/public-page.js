@@ -216,7 +216,21 @@ $('#btn-submit-su-id').click(e=>{
             if (result){
                 $('#email-si-option-id').val($('#email-su-opion-id').val());
                 $('#pw-si-option-id').val($('#pw-su-opion-id').val());
-                $('#btn-sign-in-access').click();
+                SICheck[0] = true;
+                SICheck[1] = true;
+                siAlert();
+                $.ajax({
+                    url:'login/confirm',
+                    method:"POST",
+                    data:{
+                        username:$('#email-si-option-id').val(),
+                        password:$('#pw-si-option-id').val()
+                    }
+                }).done(bool=>{
+                    if(bool){
+                        window.location.href ='/';
+                    }
+                })
             }
         })
     }

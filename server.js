@@ -509,17 +509,17 @@ app.post('/create-cv-prof/confirm', (req, res) => {
   if (req.isAuthenticated()) {
     request.resume();
     request.query(`INSERT INTO dbo.Curriculum_Vitae VALUES(
-    '${req.body.RID}',
-    '${req.user.AID}',
-    '${req.body.E}',
-    '${req.body.A}',
-    '${req.body.F}',
-    '${req.body.Ex}',
-    '${req.body.H}',
-    '${req.body.EC}',
-    '${req.body.Co}',
-    '${req.body.P}',
-    '${req.body.S}'
+    ${req.body.RID},
+    ${req.user.AID},
+    N'${req.body.E}',
+    N'${req.body.A}',
+    N'${req.body.F}',
+    N'${req.body.Ex}',
+    N'${req.body.H}',
+    ${req.body.EC},
+    ${req.body.Co},
+    ${req.body.P},
+    ${req.body.S}
   )`, (err, result) => {
       if (err) {
         console.log(err);

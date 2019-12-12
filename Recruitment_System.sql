@@ -115,3 +115,4 @@ INSERT INTO dbo.Business_type VALUES('IoT','Future of human')
 INSERT INTO dbo.Business_type VALUES('Website','Make it better')
 INSERT INTO dbo.Business_type VALUES('Android','Make life more easy')
 INSERT INTO dbo.Business_type VALUES('Cloud','Nothing')
+

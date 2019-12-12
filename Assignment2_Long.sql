@@ -1,10 +1,13 @@
-﻿use R_System
+﻿
+-- Phần này là của long nhé
+use R_System
 go
 SELECT * FROM Employer
 SELECT * FROM Recruitment_Job
 SELECT * FROM Curriculum_Vitae
 
-drop database master
+
+
 --------------------------------------------------------------------------------------------------------------------------------------
 -- Câu 1:
 -- INSERT dữ liệu vào một bảng dữ liệu với các tham số cần thiết, có VALIDATE giá trị truyền
@@ -39,8 +42,6 @@ EXECUTE PROC_CHECK_INPUT_INSERT '19','ReJobFullStack','RJ District','RJ@gmail.co
 -- Câu 2
 -- Viết 2 trigger kiểm soát insert, update, delete trên bảng đã tạo.
 DROP TRIGGER RJ_trigger_iu
-
-
 -- BEFORE INSERT 
 CREATE TRIGGER RJ_trigger_iu On Recruitment_Job
 FOR INSERT, UPDATE
@@ -81,15 +82,14 @@ END;
 DROP PROCEDURE SELECT_JOIN_EM_RJ
 
 CREATE PROCEDURE SELECT_JOIN_EM_RJ
-@Data INT
+@Data VARCHAR(MAX)
 AS 
 BEGIN
-( 
-SELECT EName,JDescription,JTimeStart,JTimeEnd_Expected,JSalary  FROM Recruitment_Job, Employer WHERE EID = @Data and J_EID = @Data
-)
+IF ISNUMERIC(@Data) = 0 BEGIN PRINT 'FAILED: ID must be INTERGER' END
+ELSE SELECT EName,JDescription,JTimeStart,JTimeEnd_Expected,JSalary  FROM Recruitment_Job, Employer WHERE EID = @Data and J_EID = @Data
 END
 
-EXEC SELECT_JOIN_EM_RJ 19
+EXEC SELECT_JOIN_EM_RJ '19'
 
 
 -- b
@@ -98,14 +98,15 @@ DROP PROCEDURE SELECT_JOIN_MAX_SAL
 
 
 CREATE PROCEDURE SELECT_JOIN_MAX_SAL
-@Data INT
+@Data VARCHAR(MAX)
 AS
 BEGIN
-	SELECT J_EID as 'Root Jobs', MAX(RJ.JSalary) as 'Max Salary'  FROM Recruitment_Job as RJ Group By J_EID HAVING MAX(RJ.JSalary)> @Data
+IF ISNUMERIC(@Data) = 0 BEGIN PRINT 'FAILED: Salary must be INTERGER' END
+ELSE SELECT J_EID as 'Root Jobs', MAX(RJ.JSalary) as 'Max Salary'  FROM Recruitment_Job as RJ Group By J_EID HAVING MAX(RJ.JSalary)> @Data
 END
 
 
-EXECUTE SELECT_JOIN_MAX_SAL 1005
+EXECUTE SELECT_JOIN_MAX_SAL '1005'
 
 
 

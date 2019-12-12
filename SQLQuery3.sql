@@ -51,14 +51,13 @@ SELECT IDENT_CURRENT('Account')
 INSERT INTO Account VALUES('a','a',1)
 	
 SELECT * FROM Account
-SELECT * FROM Employer
 SELECT * FROM Candidate
+SELECT * FROM Employer
 SELECT * FROM dbo.Business_type
-UPDATE dbo.Employer 
-  SET EName = N'${req.body.a}', EEmail = '${req.body.b}', EAddress = N'${req.body.c}',
-  EType = 1
-  WHERE EID = 32
+select * from dbo.Recruitment_Job
+select * from dbo.Curriculum_Vitae
 
 DELETE dbo.Recruitment_Job where JID = 23
+
 
 INSERT INTO dbo.Employer VALUES( (SELECT IDENT_CURRENT('Account')),'${req.body.username}','NULL','NULL',1)

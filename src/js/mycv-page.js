@@ -1,6 +1,6 @@
 const urlData = window.location.href;
 const url = new URL(urlData)
-const employerID = url.searchParams.get('i');
+const employerID = url.searchParams.get('id');
 console.log(employerID)
 
 $('#button-insert').click(e=>{
