@@ -22,6 +22,21 @@ END
 
 
 
+DELETE FROM dbo.Recruitment_Job WHERE JID = 2
+SELECT * FROM dbo.Recruitment_Job
+SELECT * FROM Curriculum_Vitae
+
+
+
+EXEC SELECT_JOIN_EM_RJ 19
+
+
+
+
+
+
+
+
 
 DECLARE @C VARCHAR(30)
 EXECUTE PROC_CHECK_INPUT_INSERT '19','ReJobFullStack','RJ District','RJ@gmail.com','05-10-1999','05-10-2020', 1,2,'NOTHING',@C OUTPUT
@@ -36,10 +51,13 @@ SELECT IDENT_CURRENT('Account')
 INSERT INTO Account VALUES('a','a',1)
 	
 SELECT * FROM Account
-SELECT * FROM dbo.Business_type
-SELECT * FROM Candidate
 SELECT * FROM Employer
-SELECT * FROM dbo.Recruitment_Job
+SELECT * FROM Candidate
+SELECT * FROM dbo.Business_type
+UPDATE dbo.Employer 
+  SET EName = N'${req.body.a}', EEmail = '${req.body.b}', EAddress = N'${req.body.c}',
+  EType = 1
+  WHERE EID = 32
 
 DELETE dbo.Recruitment_Job where JID = 23
 

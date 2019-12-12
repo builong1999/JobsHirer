@@ -74,7 +74,7 @@ SET @cnt = 1;
 WHILE @cnt <= @cnt_total
 	BEGIN
 	INSERT INTO Curriculum_Vitae VALUES(
-	@cnt%3 + 2,	-- CV Root Job ID
+	@cnt%2 + 2,	-- CV Root Job ID
 	@cnt%3 +  2,		-- CV Candidate ID
 	CONCAT('Edu ',@cnt),	-- CV Education
 	CONCAT('A Level ',@cnt),	-- CV Academic

@@ -106,6 +106,10 @@ END
 
 
 EXECUTE SELECT_JOIN_MAX_SAL 1005
+
+
+
+
 ------------------------------------------------------------------------------------------------------------------------------------
 -- Câu 4
 -- Viết 2 hàm thỏa yêu cầu.
@@ -144,6 +148,10 @@ END
 
 -- Câu lệnh SELECT 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+
 SELECT ID ,MAX(Salary) as 'Salary' FROM dbo.UF_RJ_GOE_Salary(1000) GROUP BY ID -- Function 1
+
+
 
 SELECT * FROM dbo.Recruitment_Job INNER JOIN dbo.UF_RJ_WT_GOE_YEARs(0) ON ID = JID -- Function 2

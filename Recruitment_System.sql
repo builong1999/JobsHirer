@@ -111,3 +111,7 @@ CREATE INDEX indexRecruitment_Job ON dbo.Recruitment_Job(JID)
 
 INSERT INTO dbo.Account VALUES('admin@stb.com','admin',-1)
 INSERT INTO dbo.Business_type VALUES('default','default')
+INSERT INTO dbo.Business_type VALUES('IoT','Future of human')
+INSERT INTO dbo.Business_type VALUES('Website','Make it better')
+INSERT INTO dbo.Business_type VALUES('Android','Make life more easy')
+INSERT INTO dbo.Business_type VALUES('Cloud','Nothing')
