@@ -99,9 +99,9 @@ $('#confirmCreate').click(e => {
             $('#job-day-id-ip').val('');
             $('#job-description-id-ip').val('');
             $('#create-new-recruitment').show();
+            window.location.reload();
         }
     })
-    LOAD();
 })
 
 $('#confirmDelete').click(e=>{

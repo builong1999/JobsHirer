@@ -289,5 +289,5 @@ $('#bsn-type-id').click(e=>{
 
 // URL truy cập MY CV của candidate <<Dệ>>
 $('#bsn-type-id').click(e=>{
-    window.location.href = "/my-cv-raise"
+    window.location.reload();
 })
