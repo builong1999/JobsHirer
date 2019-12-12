@@ -1,3 +1,4 @@
+// LONG
 $('#sign-id').click((e)=>{
     $('.Sign-tabs').show();
     $('.watermark-fullscreen').show();
@@ -262,9 +263,31 @@ $('#searchBtnID').click(e=>{
 
 $('#tbl-new-rj-id').on('click','p',function(){
     const text = $(this).attr('id');
-    window.open('/recruitment-job/analyst-'+text);
+    window.open('/recruitment-job/analyst-?id='+text);
 })
 
+
+// Mình đặt vài cái url cho nó thống nhất, ae đỡ phải đặt cái mới nhé
 $('#employ-f-id').click(e=>{
     window.location.href = '/my-recruitment-job-raise'
+})
+
+// URL truy cập my profile của Account || Employer || Admin ( Linh,  Huy)
+$('#my-prof-id').click(e=>{
+    window.location.href = '/my-profile-ser'
+})
+
+// URL truy cập Business type của admin <<Tuấn>>
+$('#bsn-type-id').click(e=>{
+    window.location.href = "/business-type-show"
+})
+
+// URL truy cập MY Blog của candidate <<Huy>>
+$('#bsn-type-id').click(e=>{
+    window.location.href = "/my-blog-raise"
+})
+
+// URL truy cập MY CV của candidate <<Dệ>>
+$('#bsn-type-id').click(e=>{
+    window.location.href = "/my-cv-raise"
 })

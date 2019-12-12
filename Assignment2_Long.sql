@@ -10,44 +10,35 @@ drop database master
 -- INSERT dữ liệu vào một bảng dữ liệu với các tham số cần thiết, có VALIDATE giá trị truyền
 -- và hiển thị thông báo lỗi có nghĩa.
 DROP PROC PROC_CHECK_INPUT_INSERT
-
 CREATE PROCEDURE PROC_CHECK_INPUT_INSERT
-@EID VARCHAR(10)
-,@ID VARCHAR(10)
-,@Name NVARCHAR(MAX)
-,@Address NVARCHAR(MAX)
-,@Insurance NVARCHAR(MAX)
-,@TStart DATE
-,@Tend DATE
-,@Salary VARCHAR(MAX)
-,@Doff VARCHAR(MAX)
-,@Description NVARCHAR(MAX)
-,@Check VARCHAR(30) OUTPUT
+@EID VARCHAR(10),@Name NVARCHAR(MAX),@Address NVARCHAR(MAX),@Insurance NVARCHAR(MAX),@TStart DATE
+,@Tend DATE,@Salary VARCHAR(MAX),@Doff VARCHAR(MAX),@Description NVARCHAR(MAX),@Check VARCHAR(30) OUTPUT
 AS
 BEGIN
 	IF ISNUMERIC(@Salary) = 0 or ISNUMERIC(@Doff) = 0
 	BEGIN 
-		SELECT @Check = 'FAILED: TYPE FORMAT IS NOT MATCH' 
+		SELECT @Check = 0
+		PRINT 'FAILED: TYPE FORMAT IS NOT MATCH' 
 		RETURN
 	END
 	IF @Salary < 0 or @Doff < 0 
 	BEGIN 
-		SELECT @Check = 'FAILED: DATA VALUE IS INVALID' 
+		SELECT @Check = 0
+		PRINT 'FAILED: DATA VALUE IS INVALID' 
 		RETURN
 	END
-	INSERT INTO dbo.Recruitment_Job VALUES(@EID,@ID,@Name,@Address,@Insurance,@TStart,@Tend,@Salary,@Doff,@Description)
-	SELECT @Check = 'SUCCESS:'
+	INSERT INTO dbo.Recruitment_Job VALUES(@EID,@Name,@Address,@Insurance,@TStart,@Tend,@Salary,@Doff,@Description)
+	SELECT @Check = 0
+	PRINT 'SUCCESS'
 END
 delete dbo.Recruitment_Job WHERE JID = 'RJ_ID11'
 DECLARE @CHECK VARCHAR(30);
-EXECUTE PROC_CHECK_INPUT_INSERT 'EMP4','RJ_ID11','long','dep','trai','05-10-1999','05-10-2020',-1,2,'NOTHING',@CHECK OUTPUT
-PRINT @CHECK
-
+EXECUTE PROC_CHECK_INPUT_INSERT '19','ReJobFullStack','RJ District','RJ@gmail.com','05-10-1999','05-10-2020',10,2,'NOTHING',@CHECK OUTPUT
 --SELECT TOP 1 * FROM table_Name ORDER BY unique_column DESC 
 --------------------------------------------------------------------------------------------------------------------------------------
 -- Câu 2
 -- Viết 2 trigger kiểm soát insert, update, delete trên bảng đã tạo.
-DROP TRIGGER INS_new_rj_trigger
+DROP TRIGGER RJ_trigger_iu
 
 
 -- BEFORE INSERT 
@@ -56,8 +47,22 @@ FOR INSERT, UPDATE
 AS
 BEGIN
 	IF ((SELECT JSalary from inserted where JSalary < 0) is not Null)
-		ROLLBACK TRAN
+		BEGIN
+		PRINT 'FAILED: DATA VALUE IS INVALID' 
+		ROLLBACK TRAN 
+		END
+	ELSE 
+		BEGIN
+		IF ( exists (SELECT* FROM dbo.Recruitment_Job as RJ WHERE RJ.JTimeEnd_Expected < RJ.JTimeStart ))
+			BEGIN
+			PRINT 'FAILED: START TIME IS GREATER THAN END TIME'
+			ROLLBACK TRAN
+			END
+		ELSE
+			PRINT 'SUCCESS'
+		END
 END;
+
 
 -- AFTER DELETE, REMOVE Curiculum Vitage (CHANGE ANOTHER TABLES)
 CREATE TRIGGER RJ_trigger_d ON Recruitment_Job

@@ -1,3 +1,4 @@
+// LONG
 function LOAD() {
     $.ajax({
         url: '/get-peer/recruitment',

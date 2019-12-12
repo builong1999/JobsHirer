@@ -148,6 +148,20 @@ app.post('/create-new-account/confirm', (req, res, next) => {
       )
       `, (err, result) => {
     if (err) console.log(err);
+    else{
+      if (req.body.AType == 1){
+        request.query(`
+        INSERT INTO dbo.Employer VALUES( (SELECT IDENT_CURRENT('Account')),'${req.body.username}','NULL','NULL',1)
+        `)
+      }
+      else{
+        request.query(`
+        INSERT INTO dbo.Candidate
+        VALUES ((SELECT IDENT_CURRENT('Account')), '${req.body.username}', 'default', '00000000000', '@', '1-1-2000', '000000000' , 0, '');
+        `)
+      }
+      res.send(true)
+    }
   })
 
   request.pause();
@@ -180,10 +194,10 @@ app.post('/get-goe-salary/confirm', (req, res) => {
   request.pause();
 })
 
-app.get('/recruitment-job/analyst-:id', (req, res) => {
+app.get('/recruitment-job/analyst-', (req, res) => {
   var Obj = {};
   request.resume();
-  request.query(`Select * from Recruitment_Job WHERE JID = '${req.params.id}'`, (err, result) => {
+  request.query(`Select * from Recruitment_Job WHERE JID = '${req.query.id}'`, (err, result) => {
     if (err) { console.log(err) }
     else {
       Obj.b = result.recordset[0].JName;
@@ -208,45 +222,6 @@ app.get('/recruitment-job/analyst-:id', (req, res) => {
   })
 })
 
-
-app.post('/url-test-here', (req, res, next) => {
-  if (req.isAuthenticated()) {
-    // console.log() là in ra thôi.
-    // Data trên session được lấy bằng cách dưới đây.
-    console.log(req.user.username)
-    console.log(req.user.password)
-    console.log(req.user.AID)
-    console.log(req.user.AType)
-    // Data được gửi từ front-end được lấy bằng cách dưới đây.
-    console.log(req.body.name)
-    // Bắt đầu query với sqlserver như này
-    request.resume();
-    request.query(`Select * from dbo.Account WHERE AID = ${req.user.AID} `, (err, result) => {
-      if (err) console.log(err)
-      else {
-        console.log(result.recordset[0])
-        res.send({ bool: true, str: 'OK' })
-      }
-    })
-    request.pause();
-  }
-  else {
-    res.redirect('/')
-  }
-})
-
-app.get('/test', (req, res) => {
-  if (req.isAuthenticated()) {
-    // 
-    console.log(req.user.username)
-    console.log(req.user.password)
-    console.log(req.user.AID)
-    console.log(req.user.AType)
-  }
-  else {
-    res.redirect('/')
-  }
-})
 
 app.post('/get-peer/recruitment', (req, res, next) => {
   request.resume();
@@ -328,5 +303,19 @@ app.post('/request-delete-recruit/confirm', (req,res,next)=>{
     }
   })
   request.pause();
+})
+
+app.post('/get-sch-account/post-confirm', (req,res,next)=>{
+  if (req.isAuthenticated()){
+    if (req.user.AType == 1){
+      res.send(false)
+    }
+    else{
+      res.send(true)
+    }
+  }
+  else{
+    res.send(false)
+  }
 })
 // -------------------------------------------------HẾT CỦA LONG---------------------------------------------------------------
